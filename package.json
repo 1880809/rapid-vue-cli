@@ -1,0 +1,28 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"成功\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1880809/rapid-vue-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1880809/rapid-vue-cli/issues"
+  },
+  "homepage": "https://github.com/1880809/rapid-vue-cli#readme",
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "lerna": "^6.6.2"
+  }
+}

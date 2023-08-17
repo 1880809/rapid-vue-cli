@@ -1,0 +1,86 @@
+https://lerna.js.org/ 官网文档
+Lerna脚手架开发流程
+
+创建packages
+  - 初始化npm
+    npm init
+    npm init -y
+
+  - 安装lerna
+    npm i lerna@6.6.2 -D 不安装最新的v7,是v7删掉了lerna bootstrap 和 lerna add命令
+    npm i lerna@6.6.2 -g
+
+  - 初始化lerna
+    lerna init
+    lerna init --independent  独立模式,每个包的版本号都是独立的,不会统一管理
+
+    报错: Cannot initialize lerna because your package manager has not been configured to use `workspaces`, and you have not explicitly specified any packages to operate on
+     中文:
+     无法初始化lerna,因为尚未配置包管理器
+     结果: 可能是网络不行, 多试试
+
+  - 创建pacakge 会自动创建packages文件夹
+    lerna create <package-name> [loc] 本地路径,如果不填写,默认安装到所有的包 <package-name> @rapid-vue-cli/core  @rapid-vue-cli 组织名 core 包名
+    lerna create @rapid-vue-cli/core
+    lerna create @rapid-vue-cli/core packages --yes  不会询问是否创建
+
+    报错: Command failed with exit code 1: git config --get user.name
+    解决:git config --global user.name ""
+         git config --global user.email ""
+         然后查看是否设置成功
+         git config --global --get user.name
+         git config --global --get user.email
+
+  - 安装依赖
+    lerna add <package name> local(本地路径,如果不填写,默认安装到所有的包)
+    lerna add <package name> --scope <package name>  安装指定包的依赖
+    lerna add <package name> --scope <package name> --dev  安装指定包的开发依赖
+    lerna add <package name> --scope <package name> --peer  安装指定包的同级依赖
+    lerna add <package name> --scope <package name> --exact  安装指定包的精确版本依赖
+    lerna add <package name> --scope <package name> --exact --dev  安装指定包的精确版本开发依赖
+    lerna add <package name> --scope <package name> --exact --peer  安装指定包的精确版本同级依赖
+    lerna add <package name> --scope <package name> --exact --peer --dev  安装指定包的精确版本同级依赖和开发依赖
+    lerna add <package name> --scope <package name> --exact --peer --dev --registry=https://registry.npm.taobao.org  安装指定包的精确版本同级依赖和开发依赖,并且指定淘宝镜像
+    lerna add <package name> --scope <package name> --exact --peer --dev --registry=https://registry.npm.taobao.org --loglevel=verbose  安装指定包的精确版本同级依赖和开发依赖,并且指定淘宝镜像,并且打印安装日志
+    lerna add <package name> --scope <package name> --exact --peer --dev --registry=https://registry.npm.taobao.org --loglevel=verbose --no-bootstrap  安装指定包的精确版本同级依赖和开发依赖,并且指定淘宝镜像,并且打印安装日志,并且不执行lerna bootstrap
+    lerna add <package name> --scope <package name> --exact --peer --dev --registry=https://registry.npm.taobao.org --loglevel=verbose --no-bootstrap --nohoist  安装指定包的精确版本同级依赖和开发依赖,并且指定淘宝镜像,并且打印安装日志,并且不执行lerna bootstrap,并且不执行lerna hoist
+    提示: No packages found where npmlog can be added. ( 目录下的package.json 或 packages目录下的package.json存在包名, 删除重新执行lerna add)
+
+  - 软链接依赖 创建项目内部包之间的软链接 需先在目标包的package.json 里的 dependencies添加配置 再执行
+    lerna link
+
+脚手架开发和测试
+  - 清空所有包已安装的依赖
+    lerna clean
+
+  - 卸载依赖 执行目录在 packages 文件夹范围内包里的文件 不能删除包
+    lerna exec -- rm -rf node_modules/  删除packages下所有的node_modules
+
+    卸载指定包的依赖
+    lerna exec --scope @rapid-vue-cli/core -- rm -rf node_modules/  删除packages下所有的node_modules @rapid-vue-cli/core(文件的包名, 项目里package.json里的name)
+
+  - 重新安装删除的依赖 会根据各包中的package.json 里的 dependencies配置 安装对应的依赖
+    lerna bootstrap
+
+  - 执行npm脚本
+    lerna run test  每一个包都会执行test脚本
+    lerna run test --scope @rapid-vue-cli/core  执行指定包的test脚本
+
+脚手架发布和上线
+  - 查看版本
+    lerna version
+    lerna version --conventional-commits  会根据git commit的规范自动更新版本号
+    lerna version --conventional-commits --amend  会根据git commit的规范自动更新版本号,并且会把更新的版本号添加到上一次的commit中
+
+  - 查看改动 距上次发布的改动
+    lerna changed
+
+  - 查看commit之间的差异不同
+    lerna diff
+
+  - 查看改动 距上次发布的改动
+    lerna changed
+  - 查看改动 距上次发布的改动
+    lerna changed
+  - 查看改动 距上次发布的改动
+    lerna changed

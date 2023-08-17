@@ -1,0 +1,7 @@
+node_modules
+packages/**/node_modules
+packages/**/package.json.lock
+packages/**/package.json.lerna_backup
+.idea
+.vscode
+lerna-debug.log
