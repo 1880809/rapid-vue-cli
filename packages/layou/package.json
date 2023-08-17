@@ -1,0 +1,26 @@
+{
+  "name": "layou",
+  "version": "1.0.1",
+  "description": "> TODO: description",
+  "author": "ff <1880809@qq.com>",
+  "homepage": "https://github.com/1880809/rapid-vue-cli/tree/main/packages/layou#readme",
+  "license": "ISC",
+  "main": "lib/layou.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/1880809/rapid-vue-cli.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/layou.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/1880809/rapid-vue-cli/issues"
+  }
+}

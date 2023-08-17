@@ -78,8 +78,27 @@ Lerna脚手架开发流程
   - 查看commit之间的差异不同
     lerna diff
 
-  - 查看改动 距上次发布的改动
-    lerna changed
+  - 发布
+    lerna publish  会发布所有的包
+    lerna publish --conventional-commits  会根据git commit的规范自动更新版本号,并且会发布所有的包
+    lerna publish --conventional-commits --amend  会根据git commit的规范自动更新版本号,并且会把更新的版本号添加到上一次的commit中,并且会发布所有的包
+
+    如报错:
+    err E401 [UNAUTHORIZED] Login first.
+    ERR! E402 You must sign up for private packages
+    解决方案:
+    npm login 登录npm账号后 再次发布
+    如 npm login报错:
+    ! code E403
+    npm ERR! 403 403 Forbidden - PUT https://registry.npmmirror.com/-/user/org.couchdb.user:rapid-ff - [FORBIDDEN] Public registration is not allowed
+    npm ERR! 403 In most cases, you or one of your dependencies are requesting
+    npm ERR! 403 a package version that is forbidden by your security policy, or
+    npm ERR! 403 on a server you do not have access to.
+
+    这是因为更换了淘宝的cnpm
+     --registry=https://registry.npm.taobao.org 登录淘宝镜像npm账号后 再次发布
+     或者 切换源 npm config set registry https://registry.npmjs.org/ 登录npm账号后 再次发布
+
   - 查看改动 距上次发布的改动
     lerna changed
   - 查看改动 距上次发布的改动
