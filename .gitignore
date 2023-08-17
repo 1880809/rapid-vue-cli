@@ -5,3 +5,4 @@ packages/**/package.json.lerna_backup
 .idea
 .vscode
 lerna-debug.log
+record.txt

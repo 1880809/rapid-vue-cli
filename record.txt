@@ -14,7 +14,7 @@ Lerna脚手架开发流程
     lerna init
     lerna init --independent  独立模式,每个包的版本号都是独立的,不会统一管理
 
-    报错: Cannot initialize lerna because your package manager has not been configured to use `workspaces`, and you have not explicitly specified any packages to operate on
+    报错: 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 Cannot initialize lerna because your package manager has not been configured to use `workspaces`, and you have not explicitly specified any packages to operate on
      中文:
      无法初始化lerna,因为尚未配置包管理器
      结果: 可能是网络不行, 多试试
